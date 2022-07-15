@@ -99,3 +99,90 @@
       {{ui panel main}
          enable_component
          main_multiplayer.btn})}
+{new_gh_panel
+   overshell_list
+   (clear_vram TRUE)
+   ;(navigator
+   ;   (vertical smell_resume.btn smell_restart.btn smell_options.btn smell_quit.btn))
+   (enter
+    {do
+      ;{$this reset}
+      ;{ss_dong.lst set_selected $trackmodifierlistpos}
+      ;{smell_title.lbl set_localized_text SELECT_MAKER}
+      {ss_dong.lst set_local_pos 0 0 35}
+      ;{ss_dong.lst set alignment kTopCenter}
+      {ss_dong.lst set_data help_confirm}
+      {$this set_focus ss_dong.lst}})}
+{new_gh_screen
+   overshell_list
+   (panels overshell_list)
+   (focus overshell_list)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (SELECT_MSG
+      {switch
+         $component
+         (help_confirm
+            {ui pop_screen})})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Start}
+         {ui pop_screen}})}
+{new_gh_panel
+   overshell_main
+   (clear_vram TRUE)
+   (navigator
+      (vertical shell_resum4.btn shell_resum3.btn shell_resum2.btn shell_resume.btn shell_restart.btn shell_options.btn shell_quit.btn shell_qui2.btn shell_qui3.btn shell_qui4.btn))
+   (enter
+      {shell_buttons.view set_local_scale .9 0 .9}
+      {shell_buttons.view set_local_pos 0 0 -5}
+      {shell_title.lbl set_local_pos 0 0 120}
+      {shell_title.lbl set_local_scale .8 0 .8}
+      ;{$this reset}
+      {shell_title.lbl set_localized_text OVERSHELL}
+      {shell_resum4.btn set_localized_text ONE}
+      {shell_resum3.btn set_localized_text TWO}
+      {shell_resum2.btn set_localized_text THREE}
+      {shell_resume.btn set_localized_text FOUR}
+      {shell_restart.btn set_localized_text FIVE}
+      {shell_options.btn set_localized_text SIX}
+      {shell_quit.btn set_localized_text SEVEN}
+      {shell_qui2.btn set_localized_text EIGHT}
+      {shell_qui3.btn set_localized_text NINE}
+      {shell_qui4.btn set_localized_text TITTY}
+      {$this set_focus shell_resum4.btn})}
+{new_gh_screen
+   overshell_main
+   (panels overshell_main)
+   (focus overshell_main)
+   (in_game FALSE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (SELECT_MSG
+      {switch
+         $component
+         (shell_resum4.btn
+            {ui pop_screen})
+         (shell_resum3.btn
+            {ui pop_screen})
+         (shell_resum2.btn
+            {ui pop_screen})
+         (shell_resume.btn
+            {ui pop_screen})
+         (shell_restart.btn
+            {ui pop_screen})
+         (shell_options.btn
+            {ui pop_screen})
+         (shell_quit.btn
+            {ui pop_screen})
+         (shell_qui2.btn
+            {ui pop_screen})
+         (shell_qui3.btn
+            {ui pop_screen})
+         (shell_qui4.btn
+            {ui pop_screen})})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Start}
+         {ui pop_screen}})}

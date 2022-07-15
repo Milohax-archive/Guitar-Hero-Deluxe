@@ -1,3 +1,17 @@
+#define OVERSHELL_SHORTCUT
+({if
+      {&&
+      {exists ui}
+      {!
+         {ui in_transition}}
+      {==
+         {ui current_screen}
+         {ui screen main}}}
+      {set $modifier_exit {ui current_screen}}
+      ;{synth play_sequence button_select}
+      {ui push_screen overshell_main}
+      })
+((kPad_Tri kPad_Tri) OVERSHELL_SHORTCUT)
 #define CHEATS_ALLOWED
 ({&&
       {exists ui}
