@@ -72,7 +72,20 @@
       {game
          delay_task
          1000
-         {mtv_overlay show_overlay TRUE}})
+         {mtv_overlay show_overlay TRUE}}
+{if $iamadev
+   {if_else {game multiplayer}
+      {cycle_multiplayer_auto_play}
+      {with_namespace player0
+         {do
+            (($new {! {player_matcher auto_play}}))
+            {player_matcher set_auto_play $new}
+            {cheat_msg_bool "Autoplay" $new}
+         }
+      }
+   }
+}
+)
    (intro_skip
       {arena_panel start}
       {arena intro_skip}
