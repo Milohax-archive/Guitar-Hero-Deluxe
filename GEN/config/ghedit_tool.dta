@@ -1,5 +1,0 @@
-(namespaces
-   (ghui 2500 20000))
-(ghui
-   #merge ../ghui/config.dta)
-#merge ../../../system/run/config/rndedit_tool.dta

@@ -1,4 +1,0 @@
-#include anims_macros.dta
-
-; all anims must go down here for precaching to work.
-CROWD_ANIMS

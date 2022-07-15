@@ -1,5 +1,0 @@
-{arena
-   add_handlers
-   (intro_skip
-      {eval
-         {elem $camedit.TUTORIAL 0}})}
