@@ -104,7 +104,11 @@
    (sailyourshipby
       (price 250))
    (storyofmylove
-      (price 250)))
+      (price 250))
+   (advharmony
+      (price 0))
+   (graveyardshift
+      (price 0)))
 (character
    (hair_metal
       (price 5000))
