@@ -58,7 +58,7 @@
             {ui frame}
             {$this get msg_last_frame}}})
    (reset_player_settings
-      {game set_difficulty kDifficultyMedium}
+      {game set_difficulty kDifficultyExpert}
       {game set_venue basement}
       {game set_song_index 0}
       {game set_character metal}
