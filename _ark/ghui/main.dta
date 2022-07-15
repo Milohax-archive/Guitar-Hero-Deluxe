@@ -2,7 +2,7 @@
    main
    (navigator
       (vertical main_career.btn main_quickspin.btn main_multiplayer.btn main_tutorial.btn main_options.btn))
-   (focus main_career.btn)
+   (focus main_quickspin.btn)
    (enter
       ;{set $iamadev TRUE} ;autoplay enabler
       {set $main_entered TRUE}
