@@ -559,7 +559,7 @@
          (-1 -1 1 1))
       (solo
          (riffs standard)))
-   (band BASS_METAL DRUMMER_METAL)
+   ;(band BASS_METAL DRUMMER_METAL)
    (bank sfx/song_default)
    (bpm 96)
    (anim_tempo kTempoMedium)
