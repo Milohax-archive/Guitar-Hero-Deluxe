@@ -16,10 +16,24 @@
    (intro_start
       {$this reset}
       {'ui::meters_slide_in.view' set_frame 0}
+      {score_num_frame.mesh set_local_pos 0 -1 42}
+      {score_num_6.mesh set_local_pos 60 -3 41}
+      {score_num_5.mesh set_local_pos 37 -3 41}
+      {score_num_4.mesh set_local_pos 14 -3 41}
+      {score_num_3.mesh set_local_pos -16 -3 41}
+      {score_num_2.mesh set_local_pos -38 -3 41}
+      {score_num_1.mesh set_local_pos -61 -3 41}
       {hud set_score_showing FALSE})
    (intro_skip
       {$this reset}
       {'ui::meters_slide_in.view' set_frame METER_END_FRAME}
+      {score_num_frame.mesh set_local_pos 0 -1 42}
+      {score_num_6.mesh set_local_pos 60 -3 41}
+      {score_num_5.mesh set_local_pos 37 -3 41}
+      {score_num_4.mesh set_local_pos 14 -3 41}
+      {score_num_3.mesh set_local_pos -16 -3 41}
+      {score_num_2.mesh set_local_pos -38 -3 41}
+      {score_num_1.mesh set_local_pos -61 -3 41}
       {hud set_score_showing TRUE})
    (slide_meter_in
       {hud set_score_showing TRUE}
@@ -27,7 +41,14 @@
       {game
          delay_task
          250
-         {play_game_sfx meter_slide}})
+         {play_game_sfx meter_slide}}
+      {score_num_frame.mesh set_local_pos 0 -1 42}
+      {score_num_6.mesh set_local_pos 60 -3 41}
+      {score_num_5.mesh set_local_pos 37 -3 41}
+      {score_num_4.mesh set_local_pos 14 -3 41}
+      {score_num_3.mesh set_local_pos -16 -3 41}
+      {score_num_2.mesh set_local_pos -38 -3 41}
+      {score_num_1.mesh set_local_pos -61 -3 41})
    (star_power_ready
       ($player_num)
       {if
