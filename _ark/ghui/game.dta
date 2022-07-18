@@ -23,9 +23,9 @@
                      "mtv_unlock_line"))
                {mtv_campaign_song_id.view set_showing FALSE}
                {mtv_unlock_song_id.view set_showing TRUE}
-               {if_else {= $speedmod 1} ;if song speed is set to anything other than 100%
-                  {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
+               {if_else {!= $speedmod 1.0} ;if song speed is set to anything other than 100%
                   {$this set_line $prefix 1 {sprint $song_text " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}} ;if song speed is not 100%, do math to report the song speed as a percentage on line 1
+                  {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
                }
                {$this set_line $prefix 2 $artist_text}}
             {do
@@ -33,9 +33,9 @@
                      "mtv_campaign_line"))
                {mtv_campaign_song_id.view set_showing TRUE}
                {mtv_unlock_song_id.view set_showing FALSE}
-               {if_else {= $speedmod 1} ;if song speed is set to anything other than 100%
-                  {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
+               {if_else {!= $speedmod 1.0} ;if song speed is set to anything other than 100%
                   {$this set_line $prefix 1 {sprint $song_text " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}} ;if song speed is not 100%, do math to report the song speed as a percentage on line 1
+                  {$this set_line $prefix 1 $song_text} ;if all speeds are 100% simply show the song name on line 1
                }
                {$this
                   set_line
