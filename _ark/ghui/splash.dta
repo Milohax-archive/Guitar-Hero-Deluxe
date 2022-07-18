@@ -46,8 +46,8 @@
    (allow_back FALSE)
    (animate_transition FALSE)
    (TRANSITION_COMPLETE_MSG
-      {meta play_movie CUT_SCENE_VIDEO}
-      {ui goto_screen splash})}
+      ;{meta play_movie CUT_SCENE_VIDEO}
+      {ui goto_screen chooseprof})}
 #define DELAY_BEFORE_ATTRACT_MS
 (60000)
 {new_panel
