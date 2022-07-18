@@ -6,7 +6,8 @@
    (poll
       {if
          $disable_save
-         {op_data.btn set_state kDisabled}})
+         {op_data.btn set_state kDisabled}}
+         {op_bonus.btn set_state kDisabled})
    (SELECT_MSG
       {switch
          $component
