@@ -100,36 +100,6 @@
          enable_component
          main_multiplayer.btn})}
 {new_gh_panel
-   overshell_list
-   (clear_vram TRUE)
-   ;(navigator
-   ;   (vertical smell_resume.btn smell_restart.btn smell_options.btn smell_quit.btn))
-   (enter
-    {do
-      ;{$this reset}
-      ;{ss_dong.lst set_selected $trackmodifierlistpos}
-      ;{smell_title.lbl set_localized_text SELECT_MAKER}
-      {ss_dong.lst set_local_pos 0 0 35}
-      ;{ss_dong.lst set alignment kTopCenter}
-      {ss_dong.lst set_data help_confirm}
-      {$this set_focus ss_dong.lst}})}
-{new_gh_screen
-   overshell_list
-   (panels overshell_list)
-   (focus overshell_list)
-   (clear_vram TRUE)
-   (allow_back FALSE)
-   (animate_transition FALSE)
-   (SELECT_MSG
-      {switch
-         $component
-         (help_confirm
-            {ui pop_screen})})
-   (BUTTON_DOWN_MSG
-      {if
-         {== $button kPad_Start}
-         {ui pop_screen}})}
-{new_gh_panel
    overshell_main
    (clear_vram TRUE)
    (navigator
@@ -141,7 +111,7 @@
       {shell_title.lbl set_local_scale .8 0 .8}
       ;{$this reset}
       {shell_title.lbl set_localized_text OVERSHELL}
-      {shell_resum4.btn set_localized_text ONE}
+      {shell_resum4.btn set_localized_text SPEEDS}
       {shell_resum3.btn set_localized_text TWO}
       {shell_resum2.btn set_localized_text THREE}
       {shell_resume.btn set_localized_text FOUR}
@@ -163,7 +133,7 @@
       {switch
          $component
          (shell_resum4.btn
-            {ui pop_screen})
+            {ui push_screen slide_settings})
          (shell_resum3.btn
             {ui pop_screen})
          (shell_resum2.btn
@@ -184,5 +154,275 @@
             {ui pop_screen})})
    (BUTTON_DOWN_MSG
       {if
+         {== $button kPad_Tri}
+         {ui pop_screen}})}
+#define OVERSHELL_LIST_CONTENTS
+(
+(help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm help_confirm )
+)
+{new_gh_panel
+   overshell_list
+   (clear_vram TRUE)
+   ;(navigator
+   ;   (vertical smell_resume.btn smell_restart.btn smell_options.btn smell_quit.btn))
+   (enter
+    {do
+      ;{$this reset}
+      ;{ss_dong.lst set_selected $trackmodifierlistpos}
+      ;{smell_title.lbl set_localized_text SELECT_MAKER}
+      {ss_dong.lst set_local_pos 0 0 35}
+      ;{ss_dong.lst set alignment kTopCenter}
+      {ss_dong.lst set_data overshell_list_CONTENTS}
+      {$this set_focus ss_dong.lst}})}
+{new_gh_screen
+   overshell_list
+   (panels overshell_list)
+   (focus overshell_list)
+   (clear_vram TRUE)
+   (allow_back FALSE)
+   (animate_transition FALSE)
+   (SELECT_MSG
+      {switch
+         $component
+         (help_confirm
+            {ui pop_screen})})
+   (BUTTON_DOWN_MSG
+      {if
          {== $button kPad_Start}
          {ui pop_screen}})}
+#define OVERSHELL_SCREEN_COMMON_HANDLER
+(
+   (allow_back FALSE)
+   (animate_transition FALSE)
+)
+#define OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+(
+   (BUTTON_DOWN_MSG
+      {if
+         {&&
+            {! {$this slider_selected}} {== $button kPad_Tri}}
+               {ui pop_screen}
+      }
+     kDataUnhandled
+   )
+)
+#define OVERSHELL_HELP_POP_HANDLER
+(
+   {if_else
+      {&&
+         {! {$this slider_selected}} $helpentered}
+      ;{$this reset}
+      {ui pop_screen}
+      {ui pop_screen
+      ;push_screen overshell_help_screen
+      }
+   }
+)
+#define SLIDER_LEVELS
+(31)
+#define MODIFIER_SLIDER_HANDLERS
+(
+   (focus sd_guitar.sld)
+   (focus_component "")
+   (reset_focus TRUE)
+   (orig_vol 0)
+   (finish_load
+      {sd_band.sld set_num_steps 60}
+      {sd_guitar.sld set_num_steps 31}
+      {sd_sfx.sld set_num_steps 31} ; was 41 steps, dropped to 31 when disallowing <100%
+   )
+   (slider_changed
+      {'||'
+         {!=
+            {$this get orig_pos.band}
+            {$this get_slider_volume sd_band.sld}
+         }
+         {!=
+            {$this get orig_pos.guit}
+           {$this get_slider_volume sd_guitar.sld}
+         }
+         {!=
+            {$this get orig_pos.sfx}
+            {$this get_slider_volume sd_sfx.sld}
+         }
+      }
+   )
+   (calc_slider_pos
+      ($volume)
+      {int
+         {+
+            0.5
+            {*
+               $volume
+               {- SLIDER_LEVELS 1}}}})
+   (reset_slider_pos
+      ($slider $volume)
+      {$slider
+         set_selected_pos
+         {$this calc_slider_pos $volume}})
+   (enter
+      {sd_title.lbl set_local_pos 0 0 120}
+      {sd_title.lbl set_local_scale .8 0 .8}
+      {if $towel
+         {$this disable_component sd_guitar.sld}
+      }
+      {sd_band.sld set_selected_pos
+         {int {- $emulatefps 1}}}
+      {sd_guitar.sld set_selected_pos
+         {int {+ 0.5 {/ {+ {- $trackspd 1} 0.5} 0.1}}}}
+      {sd_sfx.sld set_selected_pos
+         {int {+ 0.5 {/ {+ {- $speedmod 1} 0.5} 0.05}}}}
+      {$this
+         set
+         orig_pos.band
+         {sd_band.sld selected_pos}}
+      {$this
+         set
+         orig_pos.guit
+         {sd_guitar.sld selected_pos}}
+      {$this
+         set
+         orig_pos.sfx
+         {sd_sfx.sld selected_pos}}
+      {sd_stereo.tog set_state $focusmode}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+   )
+   (reset_gm_title
+      {sd_title.lbl set_local_pos 0 0 120}
+      {sd_title.lbl set_local_scale .8 0 .8}
+      {sd_title.lbl set_localized_text GAME_MODIFIER}
+   )
+   (display_speed_msg
+      ($tspd $mspd $fps)
+      {if_else $focusmode
+         {do
+            {set $miloskipintro TRUE} {set $skipoutro TRUE} {set $notestreakmod FALSE} {set $sfx FALSE}
+         }
+         {do
+            {set $miloskipintro FALSE} {set $skipoutro FALSE} {set $notestreakmod TRUE} {set $sfx TRUE}
+         }
+      }
+      {sd_title.lbl set_localized_text
+         {sprintf {localize speed_msg}
+            {int
+               {+ 0.5 {* $tspd 100}}
+            }
+            {int
+               {+ 0.5 {* $mspd 100}}
+            }
+            {int
+               $fps
+            }
+         }
+      }
+   )
+   (set_speeds
+      {if {$this slider_changed}
+         {do
+            {set $trackspd
+               {- {+ 1 {* {sd_guitar.sld selected_pos} 0.1}} 0.5}
+            }
+            {set $speedmod
+               {- {+ 1 {* {sd_sfx.sld selected_pos} 0.05}} 0.5}
+            }
+            {set $emulatefps
+               {+ 1 {sd_band.sld selected_pos}}
+            }
+            {$this display_speed_msg $trackspd $speedmod $emulatefps}
+         }
+      }
+   )
+   (GH_CANCEL_MSG
+      {switch $component
+         (sd_guitar.sld {$this reset_slider_pos sd_guitar.sld {$this get orig_vol}})
+         (sd_sfx.sld {$this reset_slider_pos sd_sfx.sld {$this get orig_vol}})
+         (sd_band.sld {$this reset_slider_pos sd_band.sld {$this get orig_vol}})
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+      kDataUnhandled
+   )
+   (get_slider_volume
+      ($slider)
+      {/
+         {$slider selected_pos}
+         {- SLIDER_LEVELS 1}})
+   (FOCUS_MSG
+      {$this set focus_component $new_focus}
+      {$this update_help_display}
+   )
+   (update_help_display
+      {if_else {$this slider_selected}
+         {helpbar set_display
+            ((fret1 help_confirm)
+               (fret2 help_cancel)
+               (strum help_adjspd))
+         }
+         {do
+            {if_else {== {$this get focus_component} "sd_stereo.btn"}
+               {helpbar set_display
+                  ((fret1 help_onoff)
+                     (fret2 help_back)
+                     (strum help_updown))
+               }
+               {helpbar set_display
+                  ((fret1 help_select)
+                   (fret2 help_back)
+                   (strum help_updown))
+               }
+            }
+         }
+      }
+   )
+   (SCROLL_START_MSG
+      {do
+         {switch $component
+            (sd_guitar.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (sd_sfx.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+            (sd_band.sld
+               {do
+                  {play_sfx button_error (volume 1) (stop TRUE)}
+                  {$this set_speeds}
+               }
+            )
+         }
+      }
+   )
+   (SELECT_MSG
+      {switch $component
+         (sd_guitar.sld {$this set orig_vol {$this get_slider_volume sd_guitar.sld}})
+         (sd_sfx.sld {$this set orig_vol {$this get_slider_volume sd_sfx.sld}})
+         (sd_band.sld {$this set orig_vol {$this get_slider_volume sd_band.sld}})
+         (sd_stereo.btn {sd_stereo.tog toggle} {set $focusmode {sd_stereo.tog get_state}} ;OVERSHELL_HELP_POP_HANDLER
+         )
+      kDataUnhandled
+      }
+      {$this update_help_display}
+      {$this set_speeds}
+      {$this display_speed_msg $trackspd $speedmod $emulatefps}
+   )
+)
+{new_slider_panel
+   slide_settings
+   (navigator
+      (vertical sd_band.sld sd_guitar.sld sd_sfx.sld sd_stereo.btn))
+   MODIFIER_SLIDER_HANDLERS
+}
+{new_gh_screen
+   slide_settings
+   (panels slide_settings)
+   (focus slide_settings)
+   OVERSHELL_SCREEN_COMMON_HANDLER
+   OVERSHELL_COMMON_BUTTON_DOWN_HANDLER
+}

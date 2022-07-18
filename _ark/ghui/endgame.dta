@@ -122,9 +122,11 @@
       {endgame_win_classic.mesh set_showing FALSE}
       {endgame_win_punk.mesh set_showing FALSE})
    (enter
-      {endgame_song_data.lbl
-         set_localized_text
-         {game get_song_text}}
+      {set $song_text1 {game get_song_text}}
+      {if_else {!= $speedmod 1}
+         {set $song_text2 {sprint $song_text1 " (" {int {'+' 0.5 {'*' $speedmod 100}}} "%)"}}
+         {set $song_text2 $song_text1}}
+      {endgame_song_data.lbl set_text $song_text2}
       {endgame_diff_data.lbl
          set_text
          {game get_difficulty_sym}}

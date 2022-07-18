@@ -90,6 +90,11 @@
    (rnd_extension gh)
    (shared_rnd_files ghui/common.gh)
    (create
+      {set $trackspd 1.0}
+      {set $speedmod 1.0}
+      {set $emulatefps 60}
+      {set $focusmode FALSE}
+      {set $towel FALSE}
       #include ../ghui/ui.dta
       {meta set_defaults}
       {ui my_init}

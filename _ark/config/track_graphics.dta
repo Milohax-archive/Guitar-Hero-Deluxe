@@ -31,10 +31,14 @@
 (horizon_y 110)
 (remove_y -10)
 (track_speed
-   (kDifficultyEasy 1)
-   (kDifficultyMedium 1)
-   (kDifficultyHard 1.4)
-   (kDifficultyExpert 1.4))
+   ; In vanilla GH1, the game set a single track speed that gets multiplied
+   ; by 1.4 for Hard and Expert, thus creating the "normal" track speed.
+   ; In DX, we do this, but divide that value (or the value on its own) by
+   ; the $speedmod value, which is set by a slider in ui/modifiers.dta.
+   (kDifficultyEasy {/ {'*' $trackspd 1.4} $speedmod})
+   (kDifficultyMedium {/ {'*' $trackspd 1.4} $speedmod})
+   (kDifficultyHard {/ {'*' $trackspd 1.4} $speedmod})
+   (kDifficultyExpert {/ {'*' $trackspd 1.4} $speedmod}))
 (alpha_dist 40)
 (horizon_tail_clip 7)
 (nowbar_tail_clip 1.5)
