@@ -23,6 +23,8 @@
       {$this set_track_out})
    (intro_start
       {arena set_showing {! $focusmode}} ;show the world panel or not if focus mode
+      {arena_panel set_showing {! $focusmode}} ;show the world panel or not if focus mode
+      {if $focusmode {crowd set_sizes 0 0}}
       {$this reset}
       {$this
          set_showing
@@ -37,6 +39,8 @@
       })
    (intro_skip
       {arena set_showing {! $focusmode}} ;show the world panel or not if focus mode
+      {arena_panel set_showing {! $focusmode}} ;show the world panel or not if focus mode
+      {if $focusmode {crowd set_sizes 0 0}}
       {$this reset}
       {$this
          set_showing
@@ -56,6 +60,8 @@
          {$m on_new_track}})
    (do_extend_sequence
       {arena set_showing {! $focusmode}} ;show the world panel or not if focus mode
+      {arena_panel set_showing {! $focusmode}} ;show the world panel or not if focus mode
+      {if $focusmode {crowd set_sizes 0 0}}
       {$this animate_track_out}
       {game
          delay_task

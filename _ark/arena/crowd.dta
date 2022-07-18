@@ -242,7 +242,7 @@
 {func
    update_crowd
    {if_else
-      $no_crowd
+      {'||' $no_crowd $focusmode}
       {crowd set_sizes 0 0}
       {do
          {switch
