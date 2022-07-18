@@ -1236,7 +1236,7 @@
    "The memory card (8MB)(for PlayStation®2) in MEMORY CARD slot {SLOT} is unformatted. You must format this memory card to save game data.  Do you wish to format the memory card in MEMORY CARD slot {SLOT}?")
 (mc_new_profile_warning_ps2
    "WARNING: You have unsaved data. If you continue you will lose your progress.")
-(speed_msg "NOTES: %d%%\n SONG: %d%%\n FPS: %dFPS")
+(speed_msg "NOTES: %d%% SONG: %d%%\n FPS: %dFPS")
 (gm_tspd "FPS")
 (gm_sngspd "NOTE SPEED")
 (gm_unusedsl "SONG SPEED")
