@@ -120,7 +120,7 @@
       {shell_quit.btn set_localized_text SEVEN}
       {shell_qui2.btn set_localized_text EIGHT}
       {shell_qui3.btn set_localized_text NINE}
-      {shell_qui4.btn set_localized_text TITTY}
+      {shell_qui4.btn set_localized_text UNLOCK}
       {$this set_focus shell_resum4.btn})}
 {new_gh_screen
    overshell_main
@@ -151,6 +151,9 @@
          (shell_qui3.btn
             {ui pop_screen})
          (shell_qui4.btn
+            {set $unlock_all 1}
+            {campaign set_all_access 1}
+            {set $disable_save 1}
             {ui pop_screen})})
    (BUTTON_DOWN_MSG
       {if
