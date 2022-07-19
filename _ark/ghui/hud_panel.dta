@@ -16,6 +16,7 @@
    (intro_start
       {$this reset}
       {'ui::meters_slide_in.view' set_frame 0}
+      {hud set_showing FALSE}
       {score_num_frame.mesh set_local_pos 0 -1 42}
       {score_mult_2.mesh set_local_pos 17.9 -2 -39.6}
       {score_mult_3.mesh set_local_pos -17.4 -2 -39.6}
@@ -41,6 +42,7 @@
       {hud set_score_showing TRUE})
    (slide_meter_in
       {hud set_score_showing TRUE}
+      {hud set_showing TRUE}
       {game anim_task 'ui::meters_slide_in.view' 500 0 METER_END_FRAME}
       {game
          delay_task
