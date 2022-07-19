@@ -94,6 +94,7 @@
       {set $speedmod 1.0}
       {set $emulatefps 60}
       {set $focusmode FALSE}
+      {set $depthmilo FALSE}
       {set $towel FALSE}
       #include ../ghui/ui.dta
       {meta set_defaults}

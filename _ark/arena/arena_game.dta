@@ -18,6 +18,7 @@
             "lose01"}
          {char_sys lose_teleport}})
    (post_switch_cam
+      {if $depthmilo {arena set_depth_of_field FALSE}}
       {do
          ($force_char_lod)
          {set

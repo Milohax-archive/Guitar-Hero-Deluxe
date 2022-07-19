@@ -109,10 +109,10 @@
       {shell_buttons.view set_local_pos 0 0 -5}
       {shell_title.lbl set_local_pos 0 0 120}
       {shell_title.lbl set_local_scale .8 0 .8}
-      ;{$this reset}
+      {$this reset}
       {shell_title.lbl set_localized_text OVERSHELL}
       {shell_resum4.btn set_localized_text SPEEDS}
-      {shell_resum3.btn set_localized_text TWO}
+      {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DOF: ON" "DOF: OFF"}}
       {shell_resum2.btn set_localized_text THREE}
       {shell_resume.btn set_localized_text FOUR}
       {shell_restart.btn set_localized_text FIVE}
@@ -135,7 +135,13 @@
          (shell_resum4.btn
             {ui push_screen slide_settings})
          (shell_resum3.btn
-            {ui pop_screen})
+            {if_else $depthmilo
+            {set $depthmilo FALSE}
+            {set $depthmilo TRUE}}
+            {do
+            {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DOF: ON" "DOF: OFF"}}
+            {$this reset}}
+            )
          (shell_resum2.btn
             {ui pop_screen})
          (shell_resume.btn
