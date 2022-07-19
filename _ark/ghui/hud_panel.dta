@@ -17,6 +17,8 @@
       {$this reset}
       {'ui::meters_slide_in.view' set_frame 0}
       {score_num_frame.mesh set_local_pos 0 -1 42}
+      {score_mult_2.mesh set_local_pos 17.9 -2 -39.6}
+      {score_mult_3.mesh set_local_pos -17.4 -2 -39.6}
       {score_num_6.mesh set_local_pos 60 -3 41}
       {score_num_5.mesh set_local_pos 37 -3 41}
       {score_num_4.mesh set_local_pos 14 -3 41}
@@ -28,6 +30,8 @@
       {$this reset}
       {'ui::meters_slide_in.view' set_frame METER_END_FRAME}
       {score_num_frame.mesh set_local_pos 0 -1 42}
+      {score_mult_2.mesh set_local_pos 17.9 -2 -39.6}
+      {score_mult_3.mesh set_local_pos -17.4 -2 -39.6}
       {score_num_6.mesh set_local_pos 60 -3 41}
       {score_num_5.mesh set_local_pos 37 -3 41}
       {score_num_4.mesh set_local_pos 14 -3 41}
@@ -43,6 +47,8 @@
          250
          {play_game_sfx meter_slide}}
       {score_num_frame.mesh set_local_pos 0 -1 42}
+      {score_mult_2.mesh set_local_pos 17.9 -2 -39.6}
+      {score_mult_3.mesh set_local_pos -17.4 -2 -39.6}
       {score_num_6.mesh set_local_pos 60 -3 41}
       {score_num_5.mesh set_local_pos 37 -3 41}
       {score_num_4.mesh set_local_pos 14 -3 41}
