@@ -108,6 +108,49 @@
    (object_name arena_panel)
    (rnd_file
       "")}
+{func
+   reload_song
+   {game
+      thread_task
+      (preserve $timeskip)
+      {game set_time_paused TRUE}
+      {arena_panel set_paused TRUE}
+      {game
+         load_song
+         {game get_song}}
+      {$task
+         wait
+         {!
+            {game loaded}}}
+      {arena_panel set_paused FALSE}
+      {game set_skip_intro TRUE}
+      {game set_start_paused TRUE}
+      {game start_song_now}
+      {track_panel set_track_out}
+      {set $game_unpause_on_enter TRUE}
+      {beatmatch jump $timeskip}
+      {game set_skip_intro FALSE}
+      {game set_start_paused TRUE}
+      {ui goto_screen game}}}
+{func
+   reload_track_hud
+   {game
+      thread_task
+      (preserve $timeskip)
+      {game set_time_paused TRUE}
+      {ui goto_screen reload_hud_track}
+      {$task
+         wait
+         {!
+            {track_panel is_up}}}
+      {$task
+         wait
+         {!
+            {hud is_up}}}
+      {track_panel intro_skip}
+      {track_panel set_track_out}
+      {hud intro_skip}
+      {beatmatch jump $timeskip}}}
 #define ATTRACT_LENGTH_MS
 (120000)
 #define FADE_LENGTH_MS
@@ -126,6 +169,11 @@
    (animate_transition FALSE)
    (in_game TRUE)
    (BUTTON_DOWN_MSG
+            {if
+               {&&
+                  {== $button kPad_Select}
+                  {! $arena.game_over}}
+               {reload_song}}
       {if_else
          $attract_mode
          {if
@@ -140,7 +188,8 @@
                {&&
                   {== $button kPad_Start}
                   {! $arena.game_over}}
-               {ui goto_screen pause}}}})
+               {if_else $practicemode {ui goto_screen overshell_prac} {ui goto_screen pause}}
+            }}})
    (poll
       {if_else
          $attract_mode
@@ -198,6 +247,4 @@
    (allow_back FALSE)
    (animate_transition FALSE)
    (enter
-      {cheat_msg
-         "Reloading track and hud..."}
       {ui goto_screen game})}

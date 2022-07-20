@@ -32,7 +32,7 @@
       (range 0.65 0.9)
       (free_ride 0)
       (warning_level 0.15)
-      (lose_level 1.0e-2)))
+      (lose_level {if_else {|| $nofail $practicemode} 0 1.0e-2})))
 (star_power
    (recharge_rate 0.0)
    (deploy_rate 0.125)

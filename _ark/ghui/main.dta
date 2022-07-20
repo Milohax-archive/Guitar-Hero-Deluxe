@@ -4,6 +4,7 @@
       (vertical main_career.btn main_quickspin.btn main_multiplayer.btn main_tutorial.btn main_options.btn))
    (focus main_quickspin.btn)
    (enter
+      {set $practicemode FALSE}
       ;{set $iamadev TRUE} ;autoplay enabler
       {set $main_entered TRUE}
       {turn_off_ambient}
@@ -35,7 +36,8 @@
          (main_multiplayer.btn
             {ui goto_screen multi_sel_character})
          (main_tutorial.btn
-            {ui goto_screen tutorials})
+            {set $practicemode TRUE}
+            {ui goto_screen qp_selsong})
          (main_options.btn
             {ui goto_screen options})})
    (poll
@@ -43,15 +45,6 @@
          {game is_missing_multi_controller}
          {$this disable_component main_multiplayer.btn}
          {$this enable_component main_multiplayer.btn}}
-      {if_else
-         {&&
-            {!
-               {campaign tutorial_access}}
-            {==
-               {game get_controller 0}
-               joypad}}
-         {$this disable_component main_tutorial.btn}
-         {$this enable_component main_tutorial.btn}}
       {main_msg.view
          set_showing
          {<
@@ -113,7 +106,7 @@
       {shell_title.lbl set_localized_text OVERSHELL}
       {shell_resum4.btn set_localized_text SPEEDS}
       {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DOF: ON" "DOF: OFF"}}
-      {shell_resum2.btn set_localized_text THREE}
+      {shell_resum2.btn set_localized_text {if_else $nofail "NOFAIL: ON" "NOFAIL: OFF"}}
       {shell_resume.btn set_localized_text FOUR}
       {shell_restart.btn set_localized_text FIVE}
       {shell_options.btn set_localized_text SIX}
@@ -143,7 +136,12 @@
             {$this reset}}
             )
          (shell_resum2.btn
-            {ui pop_screen})
+            {if_else $nofail
+            {set $nofail FALSE}
+            {set $nofail TRUE}}
+            {do
+            {shell_resum2.btn set_localized_text {if_else $nofail "NOFAIL: ON" "NOFAIL: OFF"}}
+            {$this reset}})
          (shell_resume.btn
             {ui pop_screen})
          (shell_restart.btn

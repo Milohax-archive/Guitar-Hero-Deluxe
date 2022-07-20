@@ -329,47 +329,6 @@
          "Dual-perspective"
          $new}}}
 {func
-   reload_song
-   {game
-      thread_task
-      (preserve $ms $auto0 $auto1)
-      {game set_time_paused TRUE}
-      {arena_panel set_paused TRUE}
-      {set
-         $ms
-         {game ms}}
-      {set
-         $auto0
-         {'player0::player_matcher' auto_play}}
-      {if
-         {game multiplayer}
-         {set
-            $auto1
-            {'player1::player_matcher' auto_play}}}
-      {game
-         load_song
-         {game get_song}}
-      {$task
-         wait
-         {!
-            {game loaded}}}
-      {cheat_msg
-         {sprint
-            "Reloaded song: "
-            {game get_song}}}
-      {arena_panel set_paused FALSE}
-      {game set_skip_intro TRUE}
-      {game set_start_paused TRUE}
-      {game start_song_now}
-      {track_panel set_track_out}
-      {beatmatch jump $ms}
-      {game set_skip_intro FALSE}
-      {game set_start_paused TRUE}
-      {'player0::player_matcher' set_auto_play $auto0}
-      {if
-         {game multiplayer}
-         {'player1::player_matcher' set_auto_play $auto1}}}}
-{func
    toggle_time_paused
    {do
       (($new
@@ -386,28 +345,6 @@
          set_showing
          {!
             {track_panel showing}}}}}
-{func
-   reload_track_hud
-   {game
-      thread_task
-      (preserve $ms)
-      {game set_time_paused TRUE}
-      {set
-         $ms
-         {game ms}}
-      {ui goto_screen reload_hud_track}
-      {$task
-         wait
-         {!
-            {track_panel is_up}}}
-      {$task
-         wait
-         {!
-            {hud is_up}}}
-      {track_panel intro_skip}
-      {track_panel set_track_out}
-      {hud intro_skip}
-      {beatmatch jump $ms}}}
 #define MUSIC_SPEEDS
 ((1.0 0.5 0.25 0.1))
 {set $speed_index 0}

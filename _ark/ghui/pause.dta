@@ -46,6 +46,78 @@
       {if
          {== $button kPad_Start}
          {$this resume}})}
+{new_gh_panel
+   overshell_prac
+   (clear_vram TRUE)
+   (navigator
+      (vertical spell_resum4.btn spell_resum3.btn spell_resum2.btn spell_resume.btn spell_restart.btn spell_options.btn spell_quit.btn spell_qui2.btn spell_qui3.btn spell_qui4.btn))
+   (enter
+      {spell_buttons.view set_local_scale .9 0 .9}
+      {spell_buttons.view set_local_pos 0 0 -5}
+      {spell_title.lbl set_local_pos 0 0 120}
+      {spell_title.lbl set_local_scale .8 0 .8}
+      {spell_title.lbl set_localized_text PRACTICE}
+      {spell_resum4.btn set_localized_text RESUME}
+      {spell_resum3.btn set_localized_text RESTART}
+      {spell_resum2.btn set_localized_text SET_A_POS}
+      {spell_resume.btn set_localized_text CLEAR_A_POS}
+      {spell_restart.btn set_localized_text FORWARD_30_SEC}
+      {spell_options.btn set_localized_text REWIND_30_SEC}
+      {spell_quit.btn set_localized_text SETTINGS}
+      {spell_qui2.btn set_localized_text QUIT}
+      {spell_qui3.btn set_localized_text NOTHING}
+      {spell_qui4.btn set_localized_text NOTHING}
+      {$this set_focus spell_resum4.btn})}
+{new_gh_screen
+   overshell_prac
+   (panels GAME_PANELS overshell_prac)
+   (focus overshell_prac)
+   (in_game TRUE)
+   PAUSE_SCREEN_HANDLERS
+   (SELECT_MSG
+      {switch
+         $component
+         (spell_resum4.btn
+            {$this resume})
+         (spell_resum3.btn
+            {synth stop_all_sfx}
+            {synth play_sequence button_play}
+            {game restart}
+            {ui goto_screen game}
+            )
+         (spell_resum2.btn
+            {set $timeskip {game ms}})
+         (spell_resume.btn
+            {set $timeskip 0})
+         (spell_restart.btn
+         {do
+            {set $timeskip {+ {game ms} 30000}}
+            {ui pop_screen}
+            {song_reload}})
+         (spell_options.btn
+         {do
+            {set $timeskip {- {game ms} 30000}}
+            {if {< $timeskip 0} {set $timeskip 0}}
+            {ui pop_screen}
+            {song_reload}})
+         (spell_quit.btn
+            {ui goto_screen pause_settings})
+         (spell_qui2.btn
+            {if
+               {==
+                  career
+                  {meta get mode}}
+               {meta set continue_screen career}}
+            {meta_loading_goto
+               {meta get continue_screen}})
+         (spell_qui3.btn
+            {ui pop_screen})
+         (spell_qui4.btn
+            {ui pop_screen})})
+   (BUTTON_DOWN_MSG
+      {if
+         {== $button kPad_Start}
+         {$this resume}})}
 {func
    meta_loading_goto
    ($next_screen)
