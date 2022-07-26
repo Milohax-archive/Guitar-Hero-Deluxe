@@ -22,6 +22,6 @@ jobs:
           name: GH1DX-PS2
           path: |
             gen
-            iop
+            IOP
             SLUS_212.24
             SYSTEM.CNF
