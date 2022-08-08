@@ -91,6 +91,7 @@ jobs:
           mv _ark/config/store_ce.dta _ark/config/store.dta
           rm -f _ark/config/campaign.dta
           mv _ark/config/campaign_ce.dta _ark/config/campaign.dta
+          sed -i -e "s/BASLUS-01123/BASLUS-01234/" _ark/config/mc.dta
           dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
       
       - name: Upload result
