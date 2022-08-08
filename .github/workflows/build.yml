@@ -26,7 +26,7 @@ jobs:
             SLUS_212.24
             SYSTEM.CNF
 
-build_gh1dx_ce_ps2:
+  build_gh1dx_ce_ps2:
     runs-on: ubuntu-latest
 
     steps:
