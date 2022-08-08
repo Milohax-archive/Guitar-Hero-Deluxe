@@ -85,9 +85,9 @@ jobs:
           rm -rf _ark/songs/unsung
           rm -rf _ark/songs/yougotanotherthingcomin
           rm -rf _ark/songs/ziggystardust
-          rm -rf _ark/config/songs.dta
+          rm -f _ark/config/songs.dta
           mv _ark/config/songs_ce.dta _ark/config/songs.dta
-          rm -rf _ark/config/store.dta
+          rm -f _ark/config/store.dta
           mv _ark/config/store_ce.dta _ark/config/store.dta
           dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
       

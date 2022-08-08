@@ -70,45 +70,7 @@
       (price 250))
    (gibson_eds_white
       (price 250)))
-(song
-   (fireitup
-      (price 300))
-   (cheatonthechurch
-      (price 300))
-   (cavemanrejoice
-      (price 300))
-   (eureka
-      (price 300))
-   (allofthis
-      (price 250))
-   (behindthemask
-      (price 250))
-   (breakingwheel
-      (price 250))
-   (callout
-      (price 250))
-   (decontrol
-      (price 250))
-   (evenrats
-      (price 250))
-   (farewellmyth
-      (price 250))
-   (flyonthewall
-      (price 250))
-   (getready2rokk
-      (price 250))
-   (guitarhero
-      (price 250))
-   (hey
-      (price 250))
-   (sailyourshipby
-      (price 250))
-   (storyofmylove
-      (price 250))
-   (advharmony
-      (price 0))
-   (graveyardshift
-      (price 0)))
+(song)
 (character
    (hair_metal
       (price 5000))
