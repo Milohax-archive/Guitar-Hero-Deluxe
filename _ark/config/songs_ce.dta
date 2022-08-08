@@ -1,0 +1,271 @@
+#include ../charsys/band_chars.dta
+(graveyardshift
+   (name
+      "Graveyard Shift")
+   (artist
+      "Unknown")
+   (song
+      (name songs/graveyardshift/graveyardshift)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.8 0.8 1.0 1.0))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 162)
+   (anim_tempo kTempoFast)
+   (preview 14653 46000)
+   (midi_file songs/graveyardshift/graveyardshift.mid)
+   (quickplay
+      (character metal)
+      (guitar gibson_lespaul)
+      (venue big_club)))
+(tutorial102
+   (name
+      "Basic 2 Playing Notes")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial102)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial102.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial103
+   (name
+      "Basic 3 Different Notes")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial103)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial103.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial104
+   (name
+      "Basic 4 Durations")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial104)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial104.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial105
+   (name
+      "Basic 5 Chords")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial105)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial105.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial202
+   (name
+      "StarPower 2 Combos")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial202)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial202.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial203
+   (name
+      "StarPower 3 Whammy Bar")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial203)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial203.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial204
+   (name
+      "StarPower 4 Wail")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial204)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial204.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial205
+   (name
+      "StarPower 5 Hammer-Ons")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial205)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial205.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))
+(tutorial206
+   (name
+      "StarPower 6 Pull-Offs")
+   (artist
+      "You")
+   (song
+      (name tutorial/tutorial206)
+      (tracks 1)
+      (slip_tracks
+         ((2 3)))
+      (pans
+         (-1.0 1.0 -1.0 1.0))
+      (vols
+         (0.5 0.5 0.5 0.5))
+      (cores
+         (-1 -1 1 1))
+      (solo
+         (riffs standard)))
+   (bank sfx/song_default)
+   (bpm 108)
+   (anim_tempo kTempoMedium)
+   (preview 11981 35990)
+   (midi_file tutorial/tutorial206.mid)
+   (quickplay
+      (character nu_metal)
+      (guitar gibson_sg)
+      (venue small_club)))

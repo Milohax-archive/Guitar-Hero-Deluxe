@@ -1,0 +1,102 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build_gh1dx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build ARK
+        run: |
+          chmod +x dependencies/arkhelper
+          chmod +x dependencies/dtab
+          chmod +x dependencies/superfreq
+          dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
+      
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          name: GH1DX-PS2
+          path: |
+            GEN
+            IOP
+            SLUS_212.24
+            SYSTEM.CNF
+
+build_gh1dx_ce_ps2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build ARK
+        run: |
+          chmod +x dependencies/arkhelper
+          chmod +x dependencies/dtab
+          chmod +x dependencies/superfreq
+          rm -rf _ark/songs/aceofspades
+          rm -rf _ark/songs/advharmony
+          rm -rf _ark/songs/allofthis
+          rm -rf _ark/songs/barkatthemoon
+          rm -rf _ark/songs/behindthemask
+          rm -rf _ark/songs/breakingwheel
+          rm -rf _ark/songs/callout
+          rm -rf _ark/songs/cavemanrejoice
+          rm -rf _ark/songs/cheatonthechurch
+          rm -rf _ark/songs/cochise
+          rm -rf _ark/songs/cowboysfromhell
+          rm -rf _ark/songs/crossroads
+          rm -rf _ark/songs/decontrol
+          rm -rf _ark/songs/eureka
+          rm -rf _ark/songs/evenrats
+          rm -rf _ark/songs/farewellmyth
+          rm -rf _ark/songs/fatlip
+          rm -rf _ark/songs/fireitup
+          rm -rf _ark/songs/flyonthewall
+          rm -rf _ark/songs/frankenstein
+          rm -rf _ark/songs/getready2rokk
+          rm -rf _ark/songs/godzilla
+          rm -rf _ark/songs/guitarhero
+          rm -rf _ark/songs/heartfullofblack
+          rm -rf _ark/songs/hey
+          rm -rf _ark/songs/heyyou
+          rm -rf _ark/songs/higherground
+          rm -rf _ark/songs/iloverockandroll
+          rm -rf _ark/songs/infected
+          rm -rf _ark/songs/ironman
+          rm -rf _ark/songs/iwannabesedated
+          rm -rf _ark/songs/killerqueen
+          rm -rf _ark/songs/morethanafeeling
+          rm -rf _ark/songs/nooneknows
+          rm -rf _ark/songs/sailyourshipby
+          rm -rf _ark/songs/sharpdressedman
+          rm -rf _ark/songs/smokeonthewater
+          rm -rf _ark/songs/spanishcastlemagic
+          rm -rf _ark/songs/stellar
+          rm -rf _ark/songs/storyofmylove
+          rm -rf _ark/songs/symphofdestruction
+          rm -rf _ark/songs/takeitoff
+          rm -rf _ark/songs/takemeout
+          rm -rf _ark/songs/texasflood
+          rm -rf _ark/songs/thunderkiss65
+          rm -rf _ark/songs/unsung
+          rm -rf _ark/songs/yougotanotherthingcomin
+          rm -rf _ark/songs/ziggystardust
+          rm -rf _ark/config/songs.dta
+          mv _ark/config/songs_ce.dta _ark/config/songs.dta
+          rm -rf _ark/config/store.dta
+          mv _ark/config/store_ce.dta _ark/config/store.dta
+          dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
+      
+      - name: Upload result
+        uses: actions/upload-artifact@v2
+        with:
+          name: GH1DX-CustomEditon-PS2-standalone
+          path: |
+            GEN
+            IOP
+            SLUS_212.24
+            SYSTEM.CNF
