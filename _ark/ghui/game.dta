@@ -171,6 +171,7 @@
    (BUTTON_DOWN_MSG
             {if
                {&&
+                  $practicemode
                   {== $button kPad_Select}
                   {! $arena.game_over}}
                {reload_song}}
