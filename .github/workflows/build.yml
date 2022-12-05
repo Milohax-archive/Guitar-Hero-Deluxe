@@ -16,14 +16,14 @@ jobs:
           chmod +x dependencies/superfreq
           chmod +x dependencies/hdl_dump
           dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
-          dependencies/hdl_dump dump ./gh1dx.iml "Guitar Hero 1 Deluxe.iso"
+          dependencies/hdl_dump dump ./gh1dx.iml gh1dx.iso
       
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
           name: GH1DX-PS2
           path: |
-            "Guitar Hero 1 Deluxe.iso"
+            gh1dx.iso
 
   build_gh1dx_ce_ps2:
     runs-on: ubuntu-latest
@@ -93,11 +93,11 @@ jobs:
           mv _ark/config/campaign_ce.dta _ark/config/campaign.dta
           sed -i -e "s/BASLUS-01123/BASLUS-01234/" _ark/config/mc.dta
           dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
-          dependencies/hdl_dump dump ./gh1dx.iml "Guitar Hero 1 Deluxe - Custom Edition.iso"
+          dependencies/hdl_dump dump ./gh1dx.iml gh1dx-ce.iso
       
       - name: Upload result
         uses: actions/upload-artifact@v2
         with:
           name: GH1DX-CustomEditon-PS2-standalone
           path: |
-            "Guitar Hero 1 Deluxe - Custom Edition.iso"
+            gh1dx-ce.iso
