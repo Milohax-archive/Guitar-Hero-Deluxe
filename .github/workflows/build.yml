@@ -14,6 +14,7 @@ jobs:
           chmod +x dependencies/arkhelper
           chmod +x dependencies/dtab
           chmod +x dependencies/superfreq
+          chmod +x dependencies/hdl_dump
           dependencies/arkhelper dir2ark ./_ark ./GEN -n MAIN -s 4073741823
           dependencies/hdl_dump dump ./gh1dx.iml "Guitar Hero 1 Deluxe.iso"
       
@@ -35,6 +36,7 @@ jobs:
           chmod +x dependencies/arkhelper
           chmod +x dependencies/dtab
           chmod +x dependencies/superfreq
+          chmod +x dependencies/hdl_dump
           rm -rf _ark/songs/aceofspades
           rm -rf _ark/songs/advharmony
           rm -rf _ark/songs/allofthis
