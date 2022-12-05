@@ -69,6 +69,12 @@
    (rnd_file
       "")
    (track_extend_ms -2000)
+   (enter {if $blackbg
+             {game set_skip_intro TRUE}
+             {track_panel intro_skip}
+             {do {track_panel set_track_out}}
+             {do {arena_panel set_showing {! $blackbg}}}
+             {do {arena set_showing {! $blackbg}}}})
    (intro_start
       {arena_panel start}
       {arena intro_start}

@@ -1,0 +1,39 @@
+[SYS]
+VERSION=1.00
+MEDIA=DVD
+TARGET=PS2
+DISCVERSION=1.00
+DATE=2022/12/04-20:34:44
+[/SYS]
+
+[CUE]
+DISCNAME="GHDX-00001                      "
+PRODUCER="PLAYSTATION                     "
+COPYRIGHT="MILOHAX                         "
+CREATIONDATE=20220207
+PSTYPE=2
+DISCCODE=02
+[/CUE]
+
+[LOC]
+# the number of entries: 18
+#Start   End      Mode Fno Source
+0        287      0.0  0   "gh1dx.ims"
+288      288      0.0  0   "SYSTEM.CNF"
+289      1458     0.0  0   "SLUS_212.24"
+1459     1471     0.0  0   "IOP/CDVDSTM.IRX"
+1472     1602     0.0  0   "IOP/IOPRP271.IMG"
+1603     1627     0.0  0   "IOP/LGAUD.IRX"
+1628     1641     0.0  0   "IOP/LIBSD.IRX"
+1642     1688     0.0  0   "IOP/MCMAN.IRX"
+1689     1692     0.0  0   "IOP/MCSERV.IRX"
+1693     1696     0.0  0   "IOP/MSIFRPC.IRX"
+1697     1718     0.0  0   "IOP/PADMAN.IRX"
+1719     1719     0.0  0   "IOP/SCRTCHPD.IRX"
+1720     1723     0.0  0   "IOP/SDRDRV.IRX"
+1724     1727     0.0  0   "IOP/SIO2MAN.IRX"
+1728     1843     0.0  0   "IOP/SYNTH_S.IRX"
+1844     1917     0.0  0   "GEN/MAIN.HDR"
+1918     676776   0.0  0   "GEN/MAIN_0.ARK"
+687023   687023   0.0  0   "gh1dx.ims" 589824
+[/LOC]

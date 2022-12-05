@@ -107,7 +107,7 @@
       {shell_resum4.btn set_localized_text SPEEDS}
       {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DOF: ON" "DOF: OFF"}}
       {shell_resum2.btn set_localized_text {if_else $nofail "NOFAIL: ON" "NOFAIL: OFF"}}
-      {shell_resume.btn set_localized_text FOUR}
+      {shell_resume.btn set_localized_text {if_else $blackbg "BLACKBG: ON" "BLACKBG: OFF"}}
       {shell_restart.btn set_localized_text FIVE}
       {shell_options.btn set_localized_text SIX}
       {shell_quit.btn set_localized_text SEVEN}
@@ -143,7 +143,15 @@
             {shell_resum2.btn set_localized_text {if_else $nofail "NOFAIL: ON" "NOFAIL: OFF"}}
             {$this reset}})
          (shell_resume.btn
-            {ui pop_screen})
+            {if_else $blackbg
+            {set $blackbg FALSE}
+            {set $blackbg TRUE}}
+            {do
+            {shell_resume.btn set_localized_text {if_else $blackbg "BLACKBG: ON" "BLACKBG: OFF"}}
+            {if_else {! {arena showing}}
+               {do {arena set_showing 1}}
+               {do {arena set_showing 0}}}
+            {$this reset}})
          (shell_restart.btn
             {ui pop_screen})
          (shell_options.btn
