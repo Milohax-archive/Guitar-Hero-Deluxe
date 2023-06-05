@@ -935,8 +935,8 @@
    sel_song
    (focus ss_song.lst)
    (joypad
-      (hold_ms 500)
-      (repeat_ms 80))
+      (hold_ms 180)
+      (repeat_ms 30))
    (enter
       {turn_off_ambient}
       {$this set exiting_sel_song FALSE}

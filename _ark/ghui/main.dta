@@ -9,22 +9,22 @@
       {set $main_entered TRUE}
       {turn_off_ambient}
       {$this reset_player_settings}
-      {if
-         {!
-            {$this has already_entered}}
-         {synth play_sequence meta_lick}
-         {if
-            {&&
-               {==
-                  {game get_controller 0}
-                  guitar}
-               {==
-                  {campaign tutorials_done}
-                  0}}
-            {$this set_focus main_tutorial.btn}}
-         {$this set already_entered TRUE}}
+   ;   {if
+   ;      {!
+   ;         {$this has already_entered}}
+   ;      {synth play_sequence meta_lick}
+   ;      {if
+   ;         {&&
+   ;            {==
+   ;               {game get_controller 0}
+   ;               guitar}
+   ;            {==
+   ;               {campaign tutorials_done}
+   ;               0}}
+   ;         {$this set_focus main_tutorial.btn}}
+   ;      {$this set already_entered TRUE}}
       {tutorial set_tutorial_running FALSE}
-      {main_msg.view set_showing FALSE}
+      {main_msg.view set_showing TRUE}
       {$this set msg_last_frame 0})
    (SELECT_MSG
       {switch
@@ -98,22 +98,27 @@
    (navigator
       (vertical shell_resum4.btn shell_resum3.btn shell_resum2.btn shell_resume.btn shell_restart.btn shell_options.btn shell_quit.btn shell_qui2.btn shell_qui3.btn shell_qui4.btn))
    (enter
-      {shell_buttons.view set_local_scale .9 0 .9}
-      {shell_buttons.view set_local_pos 0 0 -5}
-      {shell_title.lbl set_local_pos 0 0 120}
-      {shell_title.lbl set_local_scale .8 0 .8}
+      {shell_buttons.view set_local_scale 1 0 1}
+      {shell_buttons.view set_local_pos 0 0 -25}
+      {shell_title.lbl set_local_pos 0 0 100}
+      {shell_title.lbl set_local_scale .75 0 .75}
       {$this reset}
-      {shell_title.lbl set_localized_text OVERSHELL}
-      {shell_resum4.btn set_localized_text SPEEDS}
-      {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DOF: ON" "DOF: OFF"}}
-      {shell_resum2.btn set_localized_text {if_else $nofail "NOFAIL: ON" "NOFAIL: OFF"}}
-      {shell_resume.btn set_localized_text FOUR}
-      {shell_restart.btn set_localized_text FIVE}
-      {shell_options.btn set_localized_text SIX}
-      {shell_quit.btn set_localized_text SEVEN}
-      {shell_qui2.btn set_localized_text EIGHT}
-      {shell_qui3.btn set_localized_text NINE}
-      {shell_qui4.btn set_localized_text UNLOCK}
+      {$this disable_component shell_qui4.btn} {shell_qui4.btn set_showing FALSE}
+      {$this disable_component shell_qui3.btn}
+      {if_else $disable_save
+         {shell_qui3.btn set_showing TRUE}
+         {shell_qui3.btn set_showing FALSE}}
+      {shell_title.lbl set_localized_text "DELUXE SETTINGS"}
+      {shell_resum4.btn set_localized_text "SET SPEEDS..."}
+      {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DEPTH OF FIELD: ON" "DEPTH OF FIELD: OFF"}}
+      {shell_resum2.btn set_localized_text {if_else $nofail "NO FAIL: ON" "NO FAIL: OFF"}}
+      {shell_resume.btn set_localized_text {if_else $airtar "AIR GUITAR: ON" "AIR GUITAR: OFF"}}
+      {shell_restart.btn set_localized_text {if_else $ghtar "GH GUITAR: ON" "GH GUITAR: OFF"}}
+      {shell_options.btn set_localized_text {if_else $moncrowd "MONKEY CROWD: ON" "MONKEY CROWD: OFF"}}
+      {shell_quit.btn set_localized_text {if_else $skucrowd "SKULL CROWD: ON" "SKULL CROWD: OFF"}}
+      {shell_qui2.btn set_localized_text {if_else $dxuo "UNLOCK ALL: ON" "UNLOCK ALL: OFF"}}
+      {shell_qui3.btn set_localized_text "[SAVING DISABLED]"} ;hidden
+      {shell_qui4.btn set_localized_text "[SAVING DISABLED]"} ;hidden
       {$this set_focus shell_resum4.btn})}
 {new_gh_screen
    overshell_main
@@ -132,7 +137,7 @@
             {set $depthmilo FALSE}
             {set $depthmilo TRUE}}
             {do
-            {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DOF: ON" "DOF: OFF"}}
+            {shell_resum3.btn set_localized_text {if_else {! $depthmilo} "DEPTH OF FIELD: ON" "DEPTH OF FIELD: OFF"}}
             {$this reset}}
             )
          (shell_resum2.btn
@@ -140,24 +145,115 @@
             {set $nofail FALSE}
             {set $nofail TRUE}}
             {do
-            {shell_resum2.btn set_localized_text {if_else $nofail "NOFAIL: ON" "NOFAIL: OFF"}}
+            {shell_resum2.btn set_localized_text {if_else $nofail "NO FAIL: ON" "NO FAIL: OFF"}}
             {$this reset}})
          (shell_resume.btn
-            {ui pop_screen})
+            {if_else
+               {== $cheat_guitar kGuitarAir}
+               {do
+                  {set $cheat_guitar 0}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_air_guitar_off}
+                  {play_sfx cheat_off}
+                  {shell_resume.btn set_localized_text "AIR GUITAR: OFF"}
+                  {set $airtar FALSE}
+                  {$this reset}}
+               {do
+                  {set $cheat_guitar kGuitarAir}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_air_guitar_on}
+                  {play_sfx cheat}
+                  {shell_resume.btn set_localized_text "AIR GUITAR: ON"}
+                  {set $airtar TRUE}
+                  {shell_restart.btn set_localized_text "GH GUITAR: OFF"}
+                  {set $ghtar FALSE}
+                  {$this reset}}})
          (shell_restart.btn
-            {ui pop_screen})
+            {if_else
+               {== $cheat_guitar kGuitarRedOctane}
+               {do
+                  {set $cheat_guitar 0}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_red_oct_guit_off}
+                  {play_sfx cheat_off}
+                  {shell_restart.btn set_localized_text "GH GUITAR: OFF"}
+                  {set $ghtar FALSE}
+                  {$this reset}}
+               {do
+                  {set $cheat_guitar kGuitarRedOctane}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_red_oct_guit_on}
+                  {play_sfx cheat}
+                  {shell_restart.btn set_localized_text "GH GUITAR: ON"}
+                  {set $ghtar TRUE}
+                  {shell_resume.btn set_localized_text "AIR GUITAR: OFF"}
+                  {set $airtar FALSE}
+                  {$this reset}}})
          (shell_options.btn
-            {ui pop_screen})
+            {if_else
+               {== $cheat_crowd 1}
+               {do
+                  {set $cheat_crowd 0}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_crowd1_off}
+                  {play_sfx cheat_off}
+                  {shell_options.btn set_localized_text "MONKEY CROWD: OFF"}
+                  {set $moncrowd FALSE}
+                  {$this reset}}
+               {do
+                  {set $cheat_crowd 1}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_crowd1_on}
+                  {play_sfx cheat}
+                  {shell_options.btn set_localized_text "MONKEY CROWD: ON"}
+                  {set $moncrowd TRUE}
+                  {shell_quit.btn set_localized_text "SKULL CROWD: OFF"}
+                  {set $skucrowd FALSE}
+                  {$this reset}}})
          (shell_quit.btn
-            {ui pop_screen})
+            {if_else
+               {== $cheat_crowd 2}
+               {do
+                  {set $cheat_crowd 0}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_crowd2_off}
+                  {play_sfx cheat_off}
+                  {shell_quit.btn set_localized_text "SKULL CROWD: OFF"}
+                  {set $skucrowd FALSE}
+                  {$this reset}}
+               {do
+                  {set $cheat_crowd 2}
+               ;   {{ui screen main}
+               ;      display_msg
+               ;      cheat_crowd2_on}
+                  {play_sfx cheat}
+                  {shell_quit.btn set_localized_text "SKULL CROWD: ON"}
+                  {set $skucrowd TRUE}
+                  {shell_options.btn set_localized_text "MONKEY CROWD: OFF"}
+                  {set $moncrowd FALSE}
+                  {$this reset}}})
          (shell_qui2.btn
-            {ui pop_screen})
-         (shell_qui3.btn
-            {ui pop_screen})
-         (shell_qui4.btn
             {set $unlock_all 1}
             {campaign set_all_access 1}
             {set $disable_save 1}
+         ;   {{ui screen main}
+         ;      display_msg
+         ;      cheat_unlock_all_on}
+            {play_sfx cheat}
+            {shell_qui2.btn set_localized_text "UNLOCK ALL: ON"}
+            {set $dxuo TRUE}
+            {shell_qui3.btn set_showing TRUE}
+            {$this reset})
+         (shell_qui3.btn ;saving disabled button
+            {ui pop_screen})
+         (shell_qui4.btn ;hidden
             {ui pop_screen})})
    (BUTTON_DOWN_MSG
       {if
