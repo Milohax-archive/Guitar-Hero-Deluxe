@@ -169,12 +169,13 @@
    (animate_transition FALSE)
    (in_game TRUE)
    (BUTTON_DOWN_MSG
-            {if
-               {&&
-                  $practicemode
-                  {== $button kPad_Select}
-                  {! $arena.game_over}}
-               {reload_song}}
+      {if
+         {&&
+            $practicemode
+            {== $button kPad_Select}
+            {! $arena.game_over}}
+         {reload_song}
+      }
       {if_else
          $attract_mode
          {if
@@ -236,7 +237,14 @@
       {if
          $game_unpause_on_enter
          {game set_paused FALSE}
-         {set $game_unpause_on_enter FALSE}})}
+         {set $game_unpause_on_enter FALSE}
+      }
+      {if $dx_needssongreload
+         {reload_song}
+         {set $dx_needssongreload FALSE}
+      }
+   )
+}
 {new_gh_screen
    finish_fade
    (panels fade)

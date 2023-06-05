@@ -78,7 +78,8 @@
       {switch
          $component
          (spell_resum4.btn
-            {$this resume})
+            {$this resume}
+            )
          (spell_resum3.btn
             {synth stop_all_sfx}
             {synth play_sequence button_play}
@@ -90,16 +91,30 @@
          (spell_resume.btn
             {set $timeskip 0})
          (spell_restart.btn
-         {do
-            {set $timeskip {+ {game ms} 30000}}
-            {ui pop_screen}
-            {song_reload}})
+            {do
+               {set $timetoskipup {+ $timetoskipup 30000}}
+               {set $timeskip {+ {game ms} $timetoskipup}}
+               {set $dx_needssongreload TRUE}
+            }
+         )
          (spell_options.btn
-         {do
-            {set $timeskip {- {game ms} 30000}}
-            {if {< $timeskip 0} {set $timeskip 0}}
-            {ui pop_screen}
-            {song_reload}})
+            {do
+               {if_else {> {- {game ms} $timetoskipdown} 30000}
+                  {set $timetoskipdown {- $timetoskipdown 30000}}
+                  {if_else {&& {< {- {game ms} $timetoskipdown} 30000} {> {- {game ms} $timetoskipdown} 20000}}
+                     {set $timetoskipdown {- $timetoskipdown 10000}}
+                     {if {< {- {game ms} $timetoskipdown} 20000}
+                        {set $timetoskipdown 0}
+                     }
+                  }
+               }
+               {if_else {< {- {game ms} $timetoskipdown} 10000}
+                  {set $timeskip 10000}
+                  {set $timeskip {- {game ms} $timetoskipdown}}
+               }
+               {set $dx_needssongreload TRUE}
+            }
+         )
          (spell_quit.btn
             {ui goto_screen pause_settings})
          (spell_qui2.btn
@@ -107,17 +122,25 @@
                {==
                   career
                   {meta get mode}}
-               {meta set continue_screen career}}
-            {meta_loading_goto
-               {meta get continue_screen}})
+               {meta set continue_screen career}
+            }
+            {meta_loading_goto {meta get continue_screen}}
+         )
          (spell_qui3.btn
-            {ui pop_screen})
+            {ui pop_screen}
+         )
          (spell_qui4.btn
-            {ui pop_screen})})
+            {ui pop_screen}
+         )
+      }
+   )
    (BUTTON_DOWN_MSG
       {if
          {== $button kPad_Start}
-         {$this resume}})}
+         {$this resume}
+      }
+   )
+}
 {func
    meta_loading_goto
    ($next_screen)
