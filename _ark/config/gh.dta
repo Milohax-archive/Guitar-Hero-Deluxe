@@ -39,8 +39,8 @@
    #include synth.dta)
 (joypad
    (ignore 1 2 3 5 6 7)
-   (hold_ms 1000)
-   (repeat_ms 80))
+   (hold_ms 180)
+   (repeat_ms 30))
 (spew)
 (timer arena char_poll char_draw game end_draw cpu gs)
 (rnd
